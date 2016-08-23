@@ -1,0 +1,6 @@
+5: foo('Hello, world!');
+   ^^^^^^^^^^^^^^^^^^^^ function call
+3:   return x * 10;
+            ^ string. This type is incompatible with
+3:   return x * 10;
+            ^^^^^^ number

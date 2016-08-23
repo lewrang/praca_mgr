@@ -1,0 +1,16 @@
+#!/bin/bash
+
+initial_port=8000
+if [ $BRANCH_NAME = "master" ] ; then branch_id=0; else branch_id="$(echo $BRANCH_NAME | cut -d '-' -f2)"; fi
+port=$(($initial_port+$branch_id))
+
+docker build -t lewrang/$BRANCH_NAME .
+
+ps="$(docker ps --filter "name=$BRANCH_NAME")"
+if [[ "$ps" == *"$BRANCH_NAME"* ]] ; then docker stop $BRANCH_NAME; fi
+
+
+ps="$(docker ps -a --filter "name=$BRANCH_NAME")"
+if [[ "$ps" == *"$BRANCH_NAME"* ]] ; then docker rm -f $BRANCH_NAME; fi
+
+docker run --link db:db -d -p $port:8081 --name $BRANCH_NAME lewrang/$BRANCH_NAME

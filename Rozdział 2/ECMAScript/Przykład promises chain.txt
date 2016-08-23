@@ -1,0 +1,14 @@
+travelService
+    .getDeparture(user)
+    .then(function (departure) {
+        return travelService.getFlight(departure.flightID);
+    })
+    .then(function (flight) {
+        return weatherService.getForecast(flight.date);
+    })
+    .then(function (weather) {
+        //Weather for specific flight
+    })
+    .catch(function (error) {
+        //Handle error
+    })

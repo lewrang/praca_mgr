@@ -1,0 +1,6 @@
+mysql -u root -p
+
+CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8\_general\_ci;
+CREATE USER 'sonar' IDENTIFIED BY 'sonar';
+GRANT ALL ON sonar.* TO 'sonar'@'%' IDENTIFIED BY 'sonar';
+GRANT ALL ON sonar.* TO 'sonar'@'localhost' IDENTIFIED BY 'sonar';

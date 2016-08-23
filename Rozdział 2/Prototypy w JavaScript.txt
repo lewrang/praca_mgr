@@ -1,0 +1,21 @@
+function Shape(width, height) {
+   this.width = width;
+   this.height = height;
+}
+
+Shape.prototype.draw = function () {
+    console.log("Drawing...");
+}
+
+var shape1 = new Shape(10, 20);
+var shape2 = new Shape(45, 30);
+
+shape1.draw(); // Drawing...
+shape2.draw(); // Drawing...
+
+Shape.prototype.draw = function () {
+    console.log("New drawing...");
+}
+
+shape1.draw(); // New drawing...
+shape2.draw(); // New drawing...

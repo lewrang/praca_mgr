@@ -1,0 +1,11 @@
+import { sum } from "example";
+console.log(sum(1, 2));
+
+import { sum, multiply, magicNumber } from "example";
+console.log(sum(1, magicNumber));
+console.log(multiply(1, 2));
+
+
+import * as example from "example";
+console.log(example.sum(1, example.magicNumber));
+console.log(example.multiply(1, 2))

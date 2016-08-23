@@ -1,0 +1,84 @@
+module.exports = function (grunt) {
+
+    grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-contrib-less");
+    grunt.loadNpmTasks("grunt-protractor-runner");
+    grunt.loadNpmTasks("grunt-usemin");
+    grunt.loadNpmTasks("grunt-contrib-cssmin");
+    grunt.loadNpmTasks("grunt-contrib-uglify");
+    grunt.loadNpmTasks("grunt-contrib-concat");
+    grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-contrib-clean");
+    grunt.loadNpmTasks("grunt-filerev");
+    grunt.loadNpmTasks("grunt-contrib-compress");
+
+    grunt.initConfig({
+        less: {
+            development: {
+                files: {
+                    "public/styles/css/main.css": "public/styles/less/main.less"
+                }
+            }
+        },
+        watch: {
+            styles: {
+                files: [ "public/styles/less/""/".less" ],
+                tasks: [ "less" ]
+            }
+        },
+        useminPrepare: {
+            html: "public/index.html",
+            options: {
+                src: ".",
+                dest: "public"
+            }
+
+        },
+        usemin: {
+            html: "public/index.html"
+        },
+        copy: {
+            optimize: {
+                src: "public/index.html",
+                dest: "public/index-developer.html"
+            }
+        },
+        filerev: {
+            options: {
+                algorithm: "md5"
+            },
+            concat: {
+                src: [ "public/js/min/"", "public/styles/min/"" ]
+            }
+        },
+        clean: {
+            beforeOptimization: [ ".tmp", "public/js/min", "public/styles/min" ]
+        },
+        compress: {
+            main: {
+                options: {
+                    mode: "gzip"
+                },
+                files: [
+                    {
+                        src: [ "public/js/min/".js", "public/styles/min/".css" ],
+                        dest: "./"
+                    }
+                ]
+            }
+        }
+    });
+
+    grunt.registerTask("optimize", [
+        "less",
+        "clean:beforeOptimization",
+        "copy:optimize",
+        "useminPrepare",
+        "concat:generated",
+        "cssmin:generated",
+        "uglify:generated",
+        "filerev",
+        "usemin",
+        "compress"
+    ]);
+};

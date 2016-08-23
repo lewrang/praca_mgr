@@ -1,0 +1,7 @@
+req.call(getDepartureUri, function (err, departure) {
+    req.call(getFlightUri, departure.flightId, function (err, flight){
+        req.call(getForecastUri, flight.date, function (err, forecast){
+            //Forecast for certain flight
+        });
+    });
+});

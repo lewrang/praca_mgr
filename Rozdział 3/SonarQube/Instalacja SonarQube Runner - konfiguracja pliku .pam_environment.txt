@@ -1,0 +1,2 @@
+SONAR\_RUNNER\_HOME=/opt/sonar-runner
+PATH DEFAULT=${PATH}:${SONAR\_RUNNER\_HOME}/bin

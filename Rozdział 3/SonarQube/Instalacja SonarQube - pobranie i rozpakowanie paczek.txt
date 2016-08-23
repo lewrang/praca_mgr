@@ -1,0 +1,4 @@
+wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-6.0.zip
+
+unzip sonarqube-6.0.zip
+sudo mv sonarqube-6.0 /opt/sonar
